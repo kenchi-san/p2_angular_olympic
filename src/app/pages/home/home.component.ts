@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {OlympicService} from 'src/app/core/services/olympic.service';
 import {OlympicCountry} from 'src/app/core/models/Olympic';
-import {participation} from "../../core/models/Participation";
+import {Participation} from "../../core/models/Participation";
+import {Router} from "@angular/router";
+import {PieChart} from "../../core/models/PieChart";
 
 @Component({
   selector: 'app-home',
@@ -11,36 +13,34 @@ import {participation} from "../../core/models/Participation";
 export class HomeComponent implements OnInit {
   items: OlympicCountry[] = [];
   totalCountries: number = 0;
-  pieChartData: any[] = [];
-  colorScheme:string = 'cool'
+  pieChartData: { name: string, value: number }[] = [];
 
-  constructor(private olympicService: OlympicService) {
+  colorScheme: string = 'cool'
+
+  constructor(private OlympicService: OlympicService, private router: Router) {
   }
-  onSelect(data:any): void {
-    console.log('Item clicked', data);
+
+  onSelect(data:PieChart): void {
+    const selectedCountry = this.items.find(item => item.country === data.name);
+    if (selectedCountry) {
+      this.router.navigate(['/country-details', selectedCountry.country]);
+    }
   }
+
   ngOnInit(): void {
-    this.olympicService.getOlympics().subscribe(data => {
+    this.OlympicService.getOlympics().subscribe(data => {
       if (data) {
         this.items = data;
 
-
-        this.pieChartData = this.items.map(item => {
-
-          if (item && item.country && item.participations != null) {
-            const totalMedals: number = item.participations.reduce((total: number, participation: participation): number => {
-              return total + participation.medalsCount;
-            }, 0);
-            return {
-              name: item.country,
-              value: totalMedals
-            };
-          }
-          return null;
-        }).filter(item => item !== null);
+        this.pieChartData = data.map((item :OlympicCountry) => ({
+          name: item.country,
+          value: item.participations.reduce(
+            (sum: number, p: Participation):number => sum + p.medalsCount,
+            0
+          ),
+        }))
         this.totalCountries = this.items.length;
       }
     });
-
   }
 }
