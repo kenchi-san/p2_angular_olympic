@@ -1,11 +1,12 @@
-<h3>Number of JOs</h3>
+<h3>Number of JOs </h3>
 <h3>Number of countries {{ totalCountries }}</h3>
 <ngx-charts-pie-chart
-    [view]="[700, 700]"
-    [scheme]="colorScheme"
-    [results]="pieChartData"
-    [legend]="false"
-    [doughnut]="false"
-    [labels]="true">
-  </ngx-charts-pie-chart>
+  [view]="[500, 500]"
+  [scheme]="colorScheme"
+  [results]="pieChartData"
+  [legend]="false"
+  [doughnut]="false"
+  [labels]="true"
+  (select)="onSelect($event)">>
+</ngx-charts-pie-chart>
 

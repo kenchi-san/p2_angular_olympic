@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable, of} from 'rxjs';
 import {OlympicService} from 'src/app/core/services/olympic.service';
 import {OlympicCountry} from 'src/app/core/models/Olympic';
 import {participation} from "../../core/models/Participation";
@@ -17,7 +16,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private olympicService: OlympicService) {
   }
-
+  onSelect(data:any): void {
+    console.log('Item clicked', data);
+  }
   ngOnInit(): void {
     this.olympicService.getOlympics().subscribe(data => {
       if (data) {
