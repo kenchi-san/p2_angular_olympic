@@ -13,7 +13,7 @@ import {PieChart} from "../../core/models/PieChart";
 export class HomeComponent implements OnInit {
   items: OlympicCountry[] = [];
   totalCountries: number = 0;
-  pieChartData: { name: string, value: number }[] = [];
+  pieChartData: PieChart[] = [];
 
   colorScheme: string = 'cool'
 

@@ -1,8 +1,14 @@
-<!--<h1>Détails du pays : {{ countryData?.country }}</h1>-->
-<!--<p>Total de participations : {{ countryData?.participations.length }}</p>-->
-<!--<p>Total de médailles :</p>-->
-<!--<ul>-->
-<!--  <li *ngFor="let participation of countryData?.participations">-->
-<!--    Année : {{ participation.year }}, Ville : {{ participation.city }}, Médailles : {{ participation.medalsCount }}-->
-<!--  </li>-->
-<!--</ul>-->
+<ngx-charts-line-chart
+  [view]="[700, 400]"
+  [scheme]="colorScheme"
+  [results]="lineChartData"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legend]="true"
+  [tooltipDisabled]="true"
+[showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+  [xAxisLabel]="'Year'"
+  [yAxisLabel]="'Medals Count'"
+  [autoScale]="true">
+</ngx-charts-line-chart>
