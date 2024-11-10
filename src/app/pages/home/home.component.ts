@@ -13,14 +13,15 @@ import {PieChart} from "../../core/models/PieChart";
 export class HomeComponent implements OnInit {
   items: OlympicCountry[] = [];
   totalCountries: number = 0;
-  pieChartData: { name: string, value: number }[] = [];
+  totalNumberJos: number = 0;
+  pieChartData: PieChart[] = [];
 
   colorScheme: string = 'cool'
 
   constructor(private OlympicService: OlympicService, private router: Router) {
   }
 
-  onSelect(data:PieChart): void {
+  onSelect(data: PieChart): void {
     const selectedCountry = this.items.find(item => item.country === data.name);
     if (selectedCountry) {
       this.router.navigate(['/country-details', selectedCountry.country]);
@@ -32,14 +33,20 @@ export class HomeComponent implements OnInit {
       if (data) {
         this.items = data;
 
-        this.pieChartData = data.map((item :OlympicCountry) => ({
+        this.pieChartData = data.map((item: OlympicCountry): PieChart => ({
           name: item.country,
           value: item.participations.reduce(
-            (sum: number, p: Participation):number => sum + p.medalsCount,
+            (sum: number, p: Participation): number => sum + p.medalsCount,
             0
           ),
         }))
         this.totalCountries = this.items.length;
+
+        this.totalNumberJos = new Set(
+          this.items.flatMap((item: OlympicCountry) =>
+            item.participations.map((d: Participation) => d.year.toString())
+          )
+        ).size;
       }
     });
   }
