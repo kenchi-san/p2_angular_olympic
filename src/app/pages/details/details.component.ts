@@ -4,6 +4,8 @@ import {OlympicService} from 'src/app/core/services/olympic.service';
 import {OlympicCountry} from "../../core/models/Olympic";
 import {Participation} from "../../core/models/Participation";
 import { ResizeChartService } from 'src/app/core/services/resize-chart.service';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -11,7 +13,7 @@ import { ResizeChartService } from 'src/app/core/services/resize-chart.service';
 })
 export class DetailsComponent implements OnInit {
   participationData: OlympicCountry | null = null;
-  items: any[] = [];
+  items: OlympicCountry[] = [];
   lineChartData: { name: string; series: { name: string; value: number; }[] | undefined; }[] | undefined
   colorScheme: string = 'cool';
   totalMedals: number | undefined = 0
@@ -19,9 +21,11 @@ export class DetailsComponent implements OnInit {
   numberEntries: number = 0
   chartWidth: number = 700;
   chartHeight: number = 400;
-  constructor(private route: ActivatedRoute, private OlympicService: OlympicService,private resizeChartService: ResizeChartService) {
+  constructor(private route: ActivatedRoute, private OlympicService: OlympicService,private resizeChartService: ResizeChartService,private location: Location) {
   }
-
+  goBack(): void {
+    this.location.back();
+  }
   ngOnInit(): void {
 
 
