@@ -1,14 +1,23 @@
-<ngx-charts-line-chart
-  [view]="[700, 400]"
-  [scheme]="colorScheme"
-  [results]="lineChartData"
-  [xAxis]="true"
-  [yAxis]="true"
-  [legend]="false"
-  [tooltipDisabled]="true"
-[showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [xAxisLabel]="'Year'"
-  [yAxisLabel]="'Medals Count'"
-  [autoScale]="true">
-</ngx-charts-line-chart>
+<div class="container">
+  <div id="title_details">Name of the country</div>
+
+  <div class="info-container">
+    <div id="number_entries">Number of Entries: {{ numberEntries }}</div>
+    <div id="total_medals">Total number medals: {{ totalMedals }}</div>
+    <div id="total_athlete">Total number of athletes: {{ totalAthlete }}</div>
+  </div>
+
+  <ngx-charts-line-chart
+    [view]="[chartWidth, chartHeight]"
+    [scheme]="colorScheme"
+    [results]="lineChartData"
+    [xAxis]="true"
+    [yAxis]="true"
+    [tooltipDisabled]="false"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxisLabel]="'Year'"
+    [yAxisLabel]="'Medals Count'"
+    [autoScale]="true">
+  </ngx-charts-line-chart>
+</div>
