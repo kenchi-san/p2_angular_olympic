@@ -1,11 +1,10 @@
-<div class="container">
   <div id="title_home">Medals per Country</div>
   <div class="info-container">
     <div id="number_jos">Number of JOs: <span class="bold-text">{{ totalNumberJos }}</span></div>
     <div id="number_countries">Number of countries: <span class="bold-text">{{ totalCountries }}</span></div>
   </div>
   <ngx-charts-pie-chart
-    [view]="[500, 500]"
+    [view]="[chartWidth, chartHeight]"
     [scheme]="colorScheme"
     [results]="pieChartData"
     [legend]="false"
@@ -13,5 +12,4 @@
     [labels]="true"
     (select)="onSelect($event)">>
   </ngx-charts-pie-chart>
-</div>
 

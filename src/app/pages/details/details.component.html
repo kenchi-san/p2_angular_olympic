@@ -2,23 +2,24 @@
   <div id="title_details">Name of the country</div>
 
   <div class="info-container">
-    <div id="number_entries">Number of Entries: {{ numberEntries }}</div>
-    <div id="total_medals">Total number medals: {{ totalMedals }}</div>
-    <div id="total_athlete">Total number of athletes: {{ totalAthlete }}</div>
+    <div id="number_entries">Number of Entries: <span class="bold-text">{{ numberEntries }}</span></div>
+    <div id="total_medals">Total number medals: <span class="bold-text">{{ totalMedals }}</span></div>
+    <div id="total_athlete">Total number of athletes: <span class="bold-text">{{ totalAthlete }}</span></div>
   </div>
-
+  <div class="chart-container">
   <ngx-charts-line-chart
     [view]="[chartWidth, chartHeight]"
     [scheme]="colorScheme"
     [results]="lineChartData"
     [xAxis]="true"
     [yAxis]="true"
-    [tooltipDisabled]="false"
+    [tooltipDisabled]="true"
     [showXAxisLabel]="true"
     [showYAxisLabel]="true"
     [xAxisLabel]="'Year'"
     [yAxisLabel]="'Medals Count'"
     [autoScale]="true">
   </ngx-charts-line-chart>
+  </div>
   <button type="button" (click)="goBack()">Retour</button>
 </div>

@@ -1,34 +1,3 @@
-/* Général */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5f5f5;
-  margin: 0;
-}
-
-/* Container pour centrer tout le contenu */
-.container {
-  text-align: center;
-  width: 100%;
-  max-width: 100%;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px; /* Espacement entre les éléments */
-  min-height: 100vh;
-  padding: 20px;
-}
-
 /* Style pour le titre */
 #title_details {
   font-size: 2.5rem;
@@ -56,7 +25,7 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex: 1;  /* Les éléments prennent toute la place disponible */
+  flex: 1; /* Les éléments prennent toute la place disponible */
   min-width: 250px;
   text-align: center;
   border: 2px solid green;
@@ -79,14 +48,15 @@ body {
   }
 
   .info-container {
-    flex-direction: column;
+    flex-direction: column;       /* Empile les éléments en colonne sur mobile */
     gap: 10px;
     align-items: center;
   }
 
   .info-container div {
-    width: 100%;
-    min-width: unset; /* Enlever la largeur minimale sur mobile */
+    width: 90%;
+    max-width: unset;             /* Supprime la limite max pour mobile */
+    box-sizing: border-box;       /* Inclus padding et bordure dans la largeur */
   }
 
   ngx-charts-line-chart {
@@ -106,15 +76,31 @@ ngx-charts-line-chart {
 
 /* Style général du bouton */
 button {
-  padding: 12px 24px;              /* Espace intérieur (haut/bas, gauche/droite) */
+  padding: 12px 24px;
   background-color: #4CAF50;
   color: white;
   font-size: 16px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;                 /* Curseur en forme de main */
-  transition: all 0.3s ease;       /* Animation fluide sur les interactions */
+  cursor: pointer; /* Curseur en forme de main */
+  transition: all 0.3s ease; /* Animation fluide sur les interactions */
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.ng-star-inserted, tick ng-star-inserted {
+  font-size: 22px;
+  font-weight: bold;
+  fill: #333;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  margin-left: 20px;
 }
