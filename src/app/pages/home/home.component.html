@@ -10,6 +10,7 @@
     [legend]="false"
     [doughnut]="false"
     [labels]="true"
-    (select)="onSelect($event)">>
+    [tooltipText]="customTooltip"
+  (select)="onSelect($event)">
   </ngx-charts-pie-chart>
 

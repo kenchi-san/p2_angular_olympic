@@ -29,7 +29,11 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/country-details', selectedCountry.country]);
     }
   }
-
+  public customTooltip(pieChartData: any): string {
+    return `
+    ${pieChartData.data.name} <br> 🏅 ${pieChartData.value}
+  `;
+  }
   ngOnInit(): void {
 
     this.resizeChartService.setChartType('pieChart');
