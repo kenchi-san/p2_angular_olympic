@@ -1,16 +1,25 @@
-  <div id="title_home">Medals per Country</div>
-  <div class="info-container">
-    <div id="number_jos">Number of JOs: <span class="bold-text">{{ totalNumberJos }}</span></div>
-    <div id="number_countries">Number of countries: <span class="bold-text">{{ totalCountries }}</span></div>
-  </div>
-  <ngx-charts-pie-chart
-    [view]="[chartWidth, chartHeight]"
-    [scheme]="colorScheme"
-    [results]="pieChartData"
-    [legend]="false"
-    [doughnut]="false"
-    [labels]="true"
-    [tooltipText]="customTooltip"
+<div id="title_home">Medals per Country</div>
+<div class="info-container">
+  <div id="number_jos">Number of JOs: <span class="bold-text">{{ totalNumberJos }}</span></div>
+  <div id="number_countries">Number of countries: <span class="bold-text">{{ totalCountries }}</span></div>
+</div>
+<ngx-charts-pie-chart
+  [view]="[chartWidth, chartHeight]"
+  [scheme]="colorScheme"
+  [results]="pieChartData"
+  [legend]="false"
+  [doughnut]="false"
+  [labels]="true"
   (select)="onSelect($event)">
-  </ngx-charts-pie-chart>
+  <ng-template #tooltipTemplate let-model="model" >
+    <div ngx-tooltip>
+
+      {{ model.name }}
+      <br/>
+      <span class="fas fa-medal"></span>
+      🏅{{ model.value }}
+
+    </div>
+  </ng-template>
+</ngx-charts-pie-chart>
 
